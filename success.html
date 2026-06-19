@@ -118,10 +118,9 @@
       "Being in your arms is my absolute favorite place to be. You are my everything."
     ];
 
-    // Magic Step: Parse the URL query string to retrieve the partner's name
-    const urlParams = new URLSearchParams(window.location.search);
-    const rawName = urlParams.get('name') || "My Love";
-    const loverName = rawName.charAt(0).toUpperCase() + rawName.slice(1).toLowerCase();
+    // MODIFIED HERE: Pull the name from the local storage caching state set by index.html
+    let loverName = localStorage.getItem('amore_unlocked_name') || "My Love";
+    loverName = loverName.charAt(0).toUpperCase() + loverName.slice(1).toLowerCase();
 
     // Rebuild layout text fields
     let acrosticHtml = '';
