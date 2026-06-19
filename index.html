@@ -279,11 +279,13 @@
           <!-- Transactional Checkout Controller Block -->
           <div id="unlockBlock" class="mt-4 border-top pt-4 mx-auto" style="max-width: 600px;">
             <p class="fs-6 text-secondary mb-3">Love your custom card configuration? Unlock the high-definition clean card image for your companion.</p>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-              <!-- Replace with your actual live UPI gateway payment handle link -->
-              <a id="paymentLink" href="#" class="btn btn-danger btn-lg px-4 fw-medium" style="background-color: var(--amor-bright-red); border: none;" target="_blank">
-  💖 Instant Secure Unlock (₹10)
-</a>
+            <div class="d-flex flex-wrap justify-content-center gap-3 align-items-center">
+              
+              <!-- CHANGED HERE: Replaced old link with your responsive Razorpay Payment Button -->
+              <form>
+                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_T38D95Vd8x0cC1" async></script> 
+              </form>
+              
               <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4 fw-medium">
                 💾 Download Preview File
               </button>
@@ -326,8 +328,9 @@
     document.getElementById('eCardForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
+      // CHANGED HERE: Grab the name directly from the form input field element layout
       const loverNameRaw = document.getElementById('loverName').value.trim();
-      const loverName = loverNameRaw.charAt(0).toUpperCase() + loverNameRaw.slice(1);
+      const loverName = loverNameRaw.charAt(0).toUpperCase() + loverNameRaw.slice(1).toLowerCase();
 
       if (!loverName) return;
 
@@ -349,11 +352,10 @@
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
 
+      // CHANGED HERE: Save the fresh typed string to localStorage right away 
       localStorage.setItem('amore_unlocked_name', loverName);
+      
       document.getElementById('previewWatermark').classList.remove('d-none');
-      const baseRazorpayLink = "https://rzp.io/rzp/ZtTNMCb"; // Replace with your actual base Razorpay Link/Page URL
-      document.getElementById('paymentLink').setAttribute('href', `${baseRazorpayLink}?notes[partner_name]=${encodeURIComponent(loverName)}`);
-      // --------------------------------
       document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
     });
 
