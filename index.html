@@ -3,97 +3,133 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amor-e Greeting Cards | Share Love, Simply.</title>
 
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   
+  <!-- Romantic & Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <title>Amor-e Greeting Cards | Share Love, Simply.</title>
   <style>
-    body {
-      font-family: 'Playfair Display', serif;
-      background-color: #fef8f9; /* Soft, warm background */
+    /* Premium Color Palette & Base Styles */
+    :root {
+      --amor-dark-red: #900c22;
+      --amor-bright-red: #c72c48;
+      --amor-light-pink: #fff5f6;
+      --amor-bg-pink: #fef8f9;
+      --amor-charcoal: #4a3b32;
     }
 
-    /* Core Branding Elements */
-    .amor-e-brand {
-      color: #900c22;
-      font-weight: 800;
-      letter-spacing: -1px;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--amor-bg-pink);
+      color: var(--amor-charcoal);
     }
-    .main-heading {
-      color: #900c22;
+
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #ffe3e7;
+      box-shadow: 0 2px 10px rgba(228, 130, 146, 0.05);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      margin-bottom: 5px;
+      color: var(--amor-dark-red) !important;
+      font-size: 1.5rem;
     }
-    .text-amor-warm { color: #5a4b41; }
-    
-    /* THE E-CARD CONTAINER - RELATIVE POSITION for all overlay layers */
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      margin-right: 8px;
+    }
+
+    /* Hero & Information Sections */
+    .hero-section {
+      background: linear-gradient(180deg, #ffffff 0%, var(--amor-bg-pink) 100%);
+      padding: 60px 0;
+    }
+    .amor-badge {
+      background-color: #ffe3e7;
+      color: var(--amor-dark-red);
+      font-weight: 500;
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    /* THE E-CARD CONTAINER */
     .e-card-preview {
-      background-color: #fff5f6; 
+      background-color: var(--amor-light-pink); 
       border-radius: 20px;
       border: 1px solid #ffe3e7;
-      padding: 50px 40px; /* Generous padding for content framing */
+      padding: 50px 40px;
       box-shadow: 0 15px 40px rgba(228, 130, 146, 0.15);
-      margin-top: 30px;
       width: 100%;
       max-width: 600px;
       position: relative; 
       overflow: hidden; 
       z-index: 1; 
-      /* Center everything on the final image */
       display: inline-block; 
     }
 
-    /* 1. Enhanced Watermark Overlay Logic (More visible and obvious) */
+    /* Card Top Branding Header */
+    .card-brand-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--amor-dark-red);
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      border-bottom: 1px double #ffd0d6;
+      padding-bottom: 5px;
+    }
+
+    /* Enhanced Watermark Overlay */
     .card-watermark {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 10; /* Above text and content base */
+      z-index: 10;
       display: flex;
       justify-content: center;
       align-items: center;
-      pointer-events: none; /* Allows canvas interactions underneath */
-      
+      pointer-events: none;
       font-family: 'Dancing Script', cursive;
       font-size: 5.5rem;
       font-weight: bold;
-      color: rgba(144, 12, 34, 0.25); /* Increased opacity from 0.1 to 0.25 for higher visibility */
+      color: rgba(144, 12, 34, 0.25);
       transform: rotate(-15deg);
-      
-      /* Denser diagonal cross-hatch pattern across the entire card space */
       background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(144,12,34, 0.08) 100px, rgba(144,12,34,0.08) 103px);
     }
     
-    /* 2. Anti-Copy Text Protection */
-    .no-copy {
-      -webkit-user-select: none;  /* Safari */
-      -moz-user-select: none;     /* Firefox */
-      -ms-user-select: none;      /* IE10+/Edge */
-      user-select: none;          /* Standard browsers */
-    }
-    
-    /* Background Pattern */
+    /* Background Pattern Layer */
     .card-background-pattern {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('heart.png'); /* Pattern file */
+      background-image: url('heart.png'); 
       background-size: 90px 90px; 
       background-repeat: repeat;   
-      opacity: 0.05;               
+      opacity: 0.04;               
       z-index: 0;                  
       pointer-events: none;
     }
 
-    /* Core Corner Graphics - Snug in bottom corners */
+    /* Corner Floral Graphics Placement */
     .corner-floral {
       position: absolute;
       width: 110px; 
@@ -108,71 +144,126 @@
     .floral-bottom-left { bottom: 0; left: 0; background-image: url('heart.png'); transform: rotate(45deg); }
     .floral-top-right { top: -5px; right: -5px; background-image: url('heart.png'); transform: rotate(225deg); }
 
-    /* Content Typography and Structuring */
+    /* Content Layout Elements */
     .card-content-wrapper { position: relative; z-index: 2; }
-    
     .card-text-main {
-      font-size: 1.45rem;
-      color: #4a3b32;
+      font-size: 1.35rem;
       line-height: 1.6;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
-
     .acrostic-container {
       font-family: 'Dancing Script', cursive;
       font-size: 2.7rem;
-      color: #c72c48;
+      color: var(--amor-bright-red);
       line-height: 1.35;
-      margin: 30px 0;
+      margin: 25px 0;
     }
     .acrostic-letter {
       font-size: 3.3rem;
       font-weight: 700;
-      color: #900c22;
+      color: var(--amor-dark-red);
+    }
+    .romantic-quote {
+      font-size: 1.25rem;
+      margin-top: 25px;
+      border-top: 1px solid #ffd0d6;
+      padding-top: 20px;
     }
 
-    .romantic-quote {
-      font-size: 1.3rem;
-      color: #615045;
-      margin-top: 30px;
-      border-top: 1px solid #ffd0d6;
-      padding-top: 25px;
+    /* Anti-Copy Protection Style */
+    .no-copy {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Footer Styling */
+    footer {
+      background-color: #ffffff;
+      border-top: 1px solid #ffe3e7;
+      color: #777;
     }
   </style>
 
+  <!-- html2canvas Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
-<body class="bg-light">
+<body>
 
-  <div class="container py-5">
+  <!-- 1. Header & Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="heart.png" alt="Amor-e Logo" class="nav-logo">
+        <span>Amor-e</span>
+      </a>
+      <span class="navbar-text text-muted d-none d-sm-inline-block italic">
+        "Amor" means Love.
+      </span>
+    </div>
+  </nav>
+
+  <!-- 2. Professional Hero & Introduction Section -->
+  <header class="hero-section text-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <span class="amor-badge mb-3">Premium Digital Card Studio</span>
+          <h1 class="display-5 text-dark mb-3 fw-bold">Craft Unique Acrostic Love Letters</h1>
+          <p class="lead text-secondary mb-4">
+            Did you know that <strong>Amor</strong> literally translates to <em>Love</em>? At <strong>Amor-e</strong>, we combine elegant typography, positive acrostic traits, and romantic declarations to create stunning, print-ready digital cards designed exclusively for your special someone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Generator Core Workspace -->
+  <main class="container pb-5">
     <div class="row justify-content-center">
-      <div class="col-md-9 text-center">
-        <h1 class="main-heading"><span class="amor-e-brand">Amor-e</span> Greeting Cards</h1>
-        <p class="text-amor-warm fs-5 mb-4">Share elegant, custom-made love beautifully.</p>
+      <div class="col-lg-7 text-center">
+        
+        <!-- Interactive Design Form -->
+        <div class="card border shadow-sm p-4 bg-white mb-5 mx-auto" style="max-width: 500px; border-radius: 15px;">
+          <h3 class="h5 mb-3 fw-semibold">Card Configuration</h3>
+          <form id="eCardForm">
+            <div class="mb-4">
+              <label for="loverName" class="form-label fw-medium text-secondary">Enter Your Partner's Name</label>
+              <input type="text" class="form-control form-control-lg text-center border-danger-subtle" id="loverName" placeholder="e.g., Kiran" required style="font-size: 1.1rem;">
+            </div>
+            <button type="submit" class="btn btn-danger btn-lg w-100 fw-medium" style="background-color: var(--amor-dark-red); border: none;">
+              Generate Signature Preview
+            </button>
+          </form>
+        </div>
 
-        <form id="eCardForm" class="p-4 bg-white rounded shadow-sm border mx-auto" style="max-width: 500px;">
-          <div class="mb-3">
-            <label for="loverName" class="form-label fw-bold text-amor-warm">Enter Their Name:</label>
-            <input type="text" class="form-control form-control-lg text-center" id="loverName" placeholder="e.g., Kiran" required>
+        <!-- Amor-e Workspace Output Display -->
+        <div id="eCardResult" class="d-none animate-fade-in">
+          <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+            <span class="spinner-grow spinner-grow-sm text-danger" role="status"></span>
+            <h4 class="text-secondary h5 mb-0 fw-medium">Protected Watermarked Canvas</h4>
           </div>
-          <button type="submit" class="btn btn-danger btn-lg px-5">Design E-Card</button>
-        </form>
-
-        <div id="eCardResult" class="mt-5 d-none">
-          <h4 class="text-muted mb-3">Your Preview:</h4>
           
           <div class="d-flex justify-content-center">
+            <!-- The Render Canvas Target Container -->
             <div id="captureTarget" class="e-card-preview text-center">
               
+              <!-- Graphics Base Layers -->
               <div class="corner-floral floral-top-left"></div>
               <div class="corner-floral floral-bottom-right"></div>
               <div class="corner-floral floral-bottom-left"></div>
               <div class="corner-floral floral-top-right"></div>
               <div class="card-background-pattern"></div>
               
-              <div id="previewWatermark" class="card-watermark">PREVIEW | PREVIEW</div>
+              <!-- Obvious Secure Watermark Pattern Overlay -->
+              <div id="previewWatermark" class="card-watermark">AMOR-E PREVIEW</div>
               
+              <!-- Content Text Layer (Protected against copying) -->
               <div class="card-content-wrapper no-copy">
+                <!-- Company Header inside the card -->
+                <div class="card-brand-header">AMORE</div>
+
                 <div class="card-text-main">
                   To my wonderful <span id="partnerNameSpan" class="fw-bold"></span>. You are truly
                 </div>
@@ -185,27 +276,37 @@
             </div>
           </div>
 
-          <div id="unlockBlock" class="mt-4 border-top pt-4">
-            <p class="fs-5 text-amor-warm mb-3">Your card looks beautiful! Unlock it for flawless sharing.</p>
+          <!-- Transactional Checkout Controller Block -->
+          <div id="unlockBlock" class="mt-4 border-top pt-4 mx-auto" style="max-width: 600px;">
+            <p class="fs-6 text-secondary mb-3">Love your custom card configuration? Unlock the high-definition clean card image for your companion.</p>
             <div class="d-flex flex-wrap justify-content-center gap-3">
-              <a href="https://rzp.io/rzp/7vPGTCOW" class="btn btn-danger btn-lg px-4 fs-5" target="_blank">
-                💖 Unlock and Remove Watermark (₹10)
+              <!-- Replace with your actual live UPI gateway payment handle link -->
+              <a href="YOUR_GATEWAY_LINK_HERE" class="btn btn-danger btn-lg px-4 fw-medium" style="background-color: var(--amor-bright-red); border: none;" target="_blank">
+                💖 Instant Secure Unlock (₹10)
               </a>
-              <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4">
-                💾 Save Watermarked Preview
+              <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4 fw-medium">
+                💾 Download Preview File
               </button>
             </div>
-            <p class="text-muted small mt-2">Painless ₹10 unlock via UPI. Your flawless image card is ready to share immediately after payment.</p>
+            <p class="text-muted small mt-2">Painless instant checkout via Google Pay, PhonePe, or Paytm UPI. Fully unlocks standard image saving and native messaging systems.</p>
           </div>
 
         </div>
 
       </div>
     </div>
-  </div>
+  </main>
 
+  <!-- 4. Informational Corporate Footer -->
+  <footer class="py-4 text-center mt-5">
+    <div class="container">
+      <p class="mb-1 small">&copy; 2026 Amor-e Greeting Cards Inc. All rights reserved.</p>
+      <p class="small mb-0">Designed elegantly. "Amor" means love, and we deliver it flawlessly to your screen.</p>
+    </div>
+  </footer>
+
+  <!-- Core Logical Scripting -->
   <script>
-    // Robust positive database for business success
     const acrosticData = {
       'A': 'Adorable', 'B': 'Brilliant', 'C': 'Charming', 'D': 'Darling', 'E': 'Enchanting',
       'F': 'Fantastic', 'G': 'Gorgeous', 'H': 'Heavenly', 'I': 'Incredible', 'J': 'Joyful',
@@ -248,39 +349,17 @@
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
       
-      // Ensure Watermark IS showing on preview
       document.getElementById('previewWatermark').classList.remove('d-none');
-
       document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Renders the entire card element container safely into a file blob canvas
-    async function generateCardFile() {
-      const targetCard = document.getElementById('captureTarget');
-      const loverName = document.getElementById('partnerNameSpan').innerText || 'GreetingCard';
-      
-      const canvas = await html2canvas(targetCard, {
-        useCORS: true,
-        scale: 2, // High resolution PNG capture
-        backgroundColor: '#fff5f6'
-      });
-      
-      return new Promise((resolve, reject) => {
-        canvas.toBlob((blob) => {
-          if (!blob) reject(new Error("Canvas failure"));
-          const file = new File([blob], `Amor_e_Card_${loverName}.png`, { type: 'image/png' });
-          resolve(file);
-        }, 'image/png');
-      });
-    }
-
-    // Standard Download Logic (Captures whatever is visible, including watermark)
-    document.getElementById('downloadBtnPreview').addEventListener('click', async function() {
+    // Fallback Download Preview Tool 
+    document.getElementById('downloadBtnPreview').addEventListener('click', function() {
       const targetCard = document.getElementById('captureTarget');
       html2canvas(targetCard, { useCORS: true, scale: 2, backgroundColor: '#fff5f6' }).then(canvas => {
         const imageUri = canvas.toDataURL("image/png");
         const downloadLink = document.createElement('a');
-        downloadLink.download = `Amor_e_Card_Preview.png`;
+        downloadLink.download = `Amor_e_Card_Watermarked.png`;
         downloadLink.href = imageUri;
         document.body.appendChild(downloadLink);
         downloadLink.click();
