@@ -52,8 +52,16 @@
     .corner-floral { position: absolute; width: 110px; height: 110px; background-size: contain; background-repeat: no-repeat; z-index: -1; opacity: 0.9; }
     .floral-top-left { top: 0; left: -5px; background-image: url('flower.png'); }
     .floral-bottom-right { bottom: 10rem; right: 0; background-image: url('flower.png'); transform: rotate(180deg); }
-    .floral-bottom-left { bottom: 10rem; left: 0; background-image: url('heart.png'); transform: rotate(45deg); }
+    .floral-bottom-left { bottom: 10rem; left: -5px; background-image: url('heart.png'); transform: rotate(45deg); }
     .floral-top-right { top: 0; right: -5px; background-image: url('heart.png'); transform: rotate(225deg); }
+    @media (min-width: 768px) {
+      .floral-bottom-right { 
+        bottom: 8rem; /* Laptop view override */
+      }
+      .floral-bottom-left { 
+        bottom: 8rem; /* Laptop view override */
+      }
+    }
 
     .card-content-wrapper { position: relative; z-index: 2; }
     .card-text-main { font-size: 1.35rem; line-height: 1.6; margin-bottom: 20px; }
