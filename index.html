@@ -281,9 +281,9 @@
             <p class="fs-6 text-secondary mb-3">Love your custom card configuration? Unlock the high-definition clean card image for your companion.</p>
             <div class="d-flex flex-wrap justify-content-center gap-3">
               <!-- Replace with your actual live UPI gateway payment handle link -->
-              <a href="YOUR_GATEWAY_LINK_HERE" class="btn btn-danger btn-lg px-4 fw-medium" style="background-color: var(--amor-bright-red); border: none;" target="_blank">
-                💖 Instant Secure Unlock (₹10)
-              </a>
+              <a id="paymentLink" href="#" class="btn btn-danger btn-lg px-4 fw-medium" style="background-color: var(--amor-bright-red); border: none;" target="_blank">
+  💖 Instant Secure Unlock (₹10)
+</a>
               <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4 fw-medium">
                 💾 Download Preview File
               </button>
@@ -348,8 +348,12 @@
       document.getElementById('partnerNameSpan').innerText = loverName;
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
-      
+
+      localStorage.setItem('amore_unlocked_name', loverName);
       document.getElementById('previewWatermark').classList.remove('d-none');
+      const baseRazorpayLink = "https://rzp.io/rzp/ZtTNMCb"; // Replace with your actual base Razorpay Link/Page URL
+      document.getElementById('paymentLink').setAttribute('href', `${baseRazorpayLink}?notes[partner_name]=${encodeURIComponent(loverName)}`);
+      // --------------------------------
       document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
     });
 
