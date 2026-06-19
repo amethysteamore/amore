@@ -309,12 +309,34 @@
 
   <!-- Core Logical Scripting -->
   <script>
+    // Expanded database with 3 unique romantic/positive adjectives per letter
     const acrosticData = {
-      'A': 'Adorable', 'B': 'Brilliant', 'C': 'Charming', 'D': 'Darling', 'E': 'Enchanting',
-      'F': 'Fantastic', 'G': 'Gorgeous', 'H': 'Heavenly', 'I': 'Incredible', 'J': 'Joyful',
-      'K': 'Kindhearted', 'L': 'Lovely', 'M': 'Magnetic', 'N': 'Nice', 'O': 'Outstanding',
-      'P': 'Perfect', 'Q': 'Queen', 'R': 'Radiant', 'S': 'Special', 'T': 'Trustworthy',
-      'U': 'Unique', 'V': 'Vibrant', 'W': 'Wonderful', 'X': 'Xtraordinary', 'Y': 'Youthful', 'Z': 'Zealous'
+      'A': ['Adorable', 'Amazing', 'Angelic'],
+      'B': ['Brilliant', 'Beautiful', 'Breathtaking'],
+      'C': ['Charming', 'Captivating', 'Compassionate'],
+      'D': ['Darling', 'Divine', 'Delightful'],
+      'E': ['Enchanting', 'Elegant', 'Exceptional'],
+      'F': ['Fantastic', 'Fascinating', 'Forever-yours'],
+      'G': ['Gorgeous', 'Genuine', 'Graceful'],
+      'H': ['Heavenly', 'Heartwarming', 'Honest'],
+      'I': ['Incredible', 'Inspiring', 'Irresistible'],
+      'J': ['Joyful', 'Joyous', 'Jewel'],
+      'K': ['Kindhearted', 'Kind', 'Kisses-personified'],
+      'L': ['Lovely', 'Luminous', 'Loyal'],
+      'M': ['Magnetic', 'Magnificent', 'Mesmerizing'],
+      'N': ['Nice', 'Noble', 'Nurturing'],
+      'O': ['Outstanding', 'One-of-a-kind', 'Optimistic'],
+      'P': ['Perfect', 'Precious', 'Passionate'],
+      'Q': ['Queen', 'Quick-witted', 'Quietly-stunning'],
+      'R': ['Radiant', 'Rare', 'Remarkable'],
+      'S': ['Special', 'Sweet', 'Soulmate'],
+      'T': ['Trustworthy', 'Tender', 'Treasured'],
+      'U': ['Unique', 'Unbelievable', 'Unconditional'],
+      'V': ['Vibrant', 'Valuable', 'Vivacious'],
+      'W': ['Wonderful', 'Warmhearted', 'Witty'],
+      'X': ['Xtraordinary', 'Xceptional', 'Xanthic'],
+      'Y': ['Youthful', 'Yearned-for', 'Yielding'],
+      'Z': ['Zealous', 'Zesty', 'Zillion-stars']
     };
 
     const romanticQuotes = [
@@ -328,7 +350,6 @@
     document.getElementById('eCardForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      // CHANGED HERE: Grab the name directly from the form input field element layout
       const loverNameRaw = document.getElementById('loverName').value.trim();
       const loverName = loverNameRaw.charAt(0).toUpperCase() + loverNameRaw.slice(1).toLowerCase();
 
@@ -336,12 +357,27 @@
 
       let acrosticHtml = '';
       const upperName = loverName.toUpperCase();
+      
+      // NEW: This object tracks how many times we've used each letter in this generation cycle
+      const letterCounter = {};
 
       for (let i = 0; i < upperName.length; i++) {
         const letter = upperName[i];
         if (acrosticData[letter]) {
-          const word = acrosticData[letter];
+          // Initialize count to 0 if we haven't seen this letter yet
+          if (letterCounter[letter] === undefined) {
+            letterCounter[letter] = 0;
+          }
+
+          // Get the current index based on how many times the letter repeated
+          const wordOptions = acrosticData[letter];
+          const chosenIndex = letterCounter[letter] % wordOptions.length; // Safe looping using modulo (%)
+          const word = wordOptions[chosenIndex];
+
           acrosticHtml += `<div><span class="acrostic-letter">${letter}</span>${word.slice(1).toLowerCase()}</div>`;
+          
+          // Increment the counter for this letter so the next duplicate uses the next adjective
+          letterCounter[letter]++;
         }
       }
 
@@ -352,14 +388,12 @@
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
 
-      // CHANGED HERE: Save the fresh typed string to localStorage right away 
       localStorage.setItem('amore_unlocked_name', loverName);
       
       document.getElementById('previewWatermark').classList.remove('d-none');
       document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Fallback Download Preview Tool 
     document.getElementById('downloadBtnPreview').addEventListener('click', function() {
       const targetCard = document.getElementById('captureTarget');
       html2canvas(targetCard, { useCORS: true, scale: 2, backgroundColor: '#fff5f6' }).then(canvas => {
