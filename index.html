@@ -4,165 +4,166 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
-  <title>Romantic E-Card Creator</title>
+  <title>Amor-e Greeting Cards | Share Love, Simply.</title>
   <style>
     body {
       font-family: 'Playfair Display', serif;
-      background-color: #fcf8f8;
+      background-color: #fef8f9; /* Soft, warm background */
     }
+
+    /* Core Branding Elements */
+    .amor-e-brand {
+      color: #900c22;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .main-heading {
+      color: #900c22;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .text-amor-warm { color: #5a4b41; }
     
-    /* E-Card Container Style */
+    /* THE E-CARD CONTAINER - RELATIVE POSITION for all overlay layers */
     .e-card-preview {
       background-color: #fff5f6; 
       border-radius: 20px;
       border: 1px solid #ffe3e7;
-      padding: 40px 30px;
-      box-shadow: 0 10px 30px rgba(228, 130, 146, 0.15);
+      padding: 50px 40px; /* Generous padding for content framing */
+      box-shadow: 0 15px 40px rgba(228, 130, 146, 0.15);
       margin-top: 30px;
       width: 100%;
       max-width: 600px;
       position: relative; 
       overflow: hidden; 
       z-index: 1; 
+      /* Center everything on the final image */
+      display: inline-block; 
     }
 
-    /* Core Corner Graphics */
-    .corner-floral {
+    /* 1. Watermark Overlay Logic (Shown by default) */
+    .card-watermark {
       position: absolute;
-      width: 100px; 
-      height: 100px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      z-index: -1; 
-      opacity: 0.8; 
-    }
-
-    .floral-top-left {
       top: 0;
       left: 0;
-      background-image: url('flower.png');
+      width: 100%;
+      height: 100%;
+      z-index: 10; /* Above text and content base */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none; /* Text can be clicked/selected beneath */
+      /* Semi-transparent text watermark */
+      font-family: 'Dancing Script', cursive;
+      font-size: 5rem;
+      color: rgba(144, 12, 34, 0.1); /* Extremely subtle red */
+      transform: rotate(-15deg);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      
+      /* Diagonal scattered text pattern approach */
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 120px, rgba(144,12,34, 0.04) 120px, rgba(144,12,34,0.04) 122px);
     }
-
-    .floral-bottom-right {
-      bottom: 8rem;
-      right: 0;
-      background-image: url('flower.png');
-      transform: rotate(180deg); 
-    }
-
-    .floral-bottom-left {
-      bottom: 8rem;
-      left: 0;
-      background-image: url('heart.png');
-      transform: rotate(45deg);
-    }
-
-    .floral-top-right {
-      top: 0;
-      right: 0;
-      background-image: url('heart.png');
-      transform: rotate(225deg); 
-    }
-
-    /* Transparent Scattered Pattern Overlay across the whole card canvas */
+    
+    /* Background Pattern */
     .card-background-pattern {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('heart.png'); 
-      background-size: 80px 80px; 
+      background-image: url('heart.png'); /* Pattern file */
+      background-size: 90px 90px; 
       background-repeat: repeat;   
       opacity: 0.05;               
       z-index: 0;                  
       pointer-events: none;
     }
-    
-    /* Content Styles */
-    .card-content-wrapper {
-      position: relative;
-      z-index: 2; 
-    }
 
+    /* Core Corner Graphics - Snug in bottom corners */
+    .corner-floral {
+      position: absolute;
+      width: 110px; 
+      height: 110px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: -1; 
+      opacity: 0.9; 
+    }
+    .floral-top-left { top: -5px; left: -5px; background-image: url('flower.png'); }
+    .floral-bottom-right { bottom: 0; right: 0; background-image: url('flower.png'); transform: rotate(180deg); }
+    .floral-bottom-left { bottom: 0; left: 0; background-image: url('heart.png'); transform: rotate(45deg); }
+    .floral-top-right { top: -5px; right: -5px; background-image: url('heart.png'); transform: rotate(225deg); }
+
+    /* Content Typography and Structuring */
+    .card-content-wrapper { position: relative; z-index: 2; }
+    
     .card-text-main {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       color: #4a3b32;
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .acrostic-container {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
+      font-size: 2.7rem;
       color: #c72c48;
-      line-height: 1.3;
-      margin: 25px 0;
+      line-height: 1.35;
+      margin: 30px 0;
     }
-    
     .acrostic-letter {
-      font-size: 3rem;
+      font-size: 3.3rem;
       font-weight: 700;
       color: #900c22;
     }
 
     .romantic-quote {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: #615045;
-      margin-top: 25px;
+      margin-top: 30px;
       border-top: 1px solid #ffd0d6;
-      padding-top: 20px;
-    }
-    
-    .main-heading {
-      color: #900c22;
-      font-weight: 700;
+      padding-top: 25px;
     }
   </style>
 
-  <!-- External rendering toolkit -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body class="bg-light">
 
   <div class="container py-5">
     <div class="row justify-content-center">
-      <div class="col-md-8 text-center">
-        <h1 class="main-heading mb-3">Create a Greeting Card</h1>
-        <p class="text-muted mb-4">Enter their name to generate a custom card image layout.</p>
+      <div class="col-md-9 text-center">
+        <h1 class="main-heading"><span class="amor-e-brand">Amor-e</span> Greeting Cards</h1>
+        <p class="text-amor-warm fs-5 mb-4">Share elegant, custom-made love beautifully.</p>
 
-        <form id="eCardForm" class="p-4 bg-white rounded shadow-sm border">
+        <form id="eCardForm" class="p-4 bg-white rounded shadow-sm border mx-auto" style="max-width: 500px;">
           <div class="mb-3">
-            <label for="loverName" class="form-label fw-bold">Their Name:</label>
+            <label for="loverName" class="form-label fw-bold text-amor-warm">Enter Their Name:</label>
             <input type="text" class="form-control form-control-lg text-center" id="loverName" placeholder="e.g., Kiran" required>
           </div>
-          <button type="submit" class="btn btn-danger btn-lg px-5">Generate Greeting Card</button>
+          <button type="submit" class="btn btn-danger btn-lg px-5">Design E-Card</button>
         </form>
 
-        <!-- Output Display Area -->
         <div id="eCardResult" class="mt-5 d-none">
-          <h4 class="text-muted mb-3">Preview:</h4>
+          <h4 class="text-muted mb-3">Your Preview:</h4>
           
           <div class="d-flex justify-content-center">
-            <!-- This target element is entirely screenshotted as a PNG file -->
             <div id="captureTarget" class="e-card-preview text-center">
               
-              <!-- Graphics Base Layers -->
               <div class="corner-floral floral-top-left"></div>
               <div class="corner-floral floral-bottom-right"></div>
               <div class="corner-floral floral-bottom-left"></div>
               <div class="corner-floral floral-top-right"></div>
               <div class="card-background-pattern"></div>
               
-              <!-- Content Text Layer -->
+              <div id="previewWatermark" class="card-watermark">PREVIEW | PREVIEW</div>
+              
               <div class="card-content-wrapper">
                 <div class="card-text-main">
                   To my wonderful <span id="partnerNameSpan" class="fw-bold"></span>. You are truly
@@ -176,16 +177,19 @@
             </div>
           </div>
 
-          <!-- Sharing Utilities -->
-          <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-            <button id="shareBtn" class="btn btn-danger btn-lg px-4">
-              💝 Share Whole Image Card
-            </button>
-            <button id="downloadBtn" class="btn btn-outline-secondary btn-lg px-4">
-              💾 Save Image File
-            </button>
+          <div id="unlockBlock" class="mt-4 border-top pt-4">
+            <p class="fs-5 text-amor-warm mb-3">Your card looks beautiful! Unlock it for flawless sharing.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              <a href="YOUR_GATEWAY_LINK_HERE" class="btn btn-danger btn-lg px-4 fs-5" target="_blank">
+                💖 Unlock and Remove Watermark (₹10)
+              </a>
+              <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4">
+                💾 Save Watermarked Preview
+              </button>
+            </div>
+            <p class="text-muted small mt-2">Painless ₹10 unlock via UPI. Your flawless image card is ready to share immediately after payment.</p>
           </div>
-          <p class="text-muted small mt-2">💡 Note: Click Share to send the complete image directly to WhatsApp, Instagram Stories, or Email.</p>
+
         </div>
 
       </div>
@@ -193,8 +197,9 @@
   </div>
 
   <script>
+    // Robust positive database for business success
     const acrosticData = {
-      'A': 'Adorable', 'B': 'Beautiful', 'C': 'Charming', 'D': 'Darling', 'E': 'Enchanting',
+      'A': 'Adorable', 'B': 'Brilliant', 'C': 'Charming', 'D': 'Darling', 'E': 'Enchanting',
       'F': 'Fantastic', 'G': 'Gorgeous', 'H': 'Heavenly', 'I': 'Incredible', 'J': 'Joyful',
       'K': 'Kindhearted', 'L': 'Lovely', 'M': 'Magnetic', 'N': 'Nice', 'O': 'Outstanding',
       'P': 'Perfect', 'Q': 'Queen', 'R': 'Radiant', 'S': 'Special', 'T': 'Trustworthy',
@@ -235,61 +240,39 @@
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
       
+      // Ensure Watermark IS showing on preview
+      document.getElementById('previewWatermark').classList.remove('d-none');
+
       document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Renders the entire card element container explicitly into a binary file blob
+    // Renders the entire card element container safely into a file blob canvas
     async function generateCardFile() {
       const targetCard = document.getElementById('captureTarget');
       const loverName = document.getElementById('partnerNameSpan').innerText || 'GreetingCard';
       
       const canvas = await html2canvas(targetCard, {
         useCORS: true,
-        scale: 2, 
+        scale: 2, // High resolution PNG capture
         backgroundColor: '#fff5f6'
       });
       
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         canvas.toBlob((blob) => {
-          const file = new File([blob], `Love_Card_${loverName}.png`, { type: 'image/png' });
+          if (!blob) reject(new Error("Canvas failure"));
+          const file = new File([blob], `Amor_e_Card_${loverName}.png`, { type: 'image/png' });
           resolve(file);
         }, 'image/png');
       });
     }
 
-    // Direct Image-Object Web Share Router
-    document.getElementById('shareBtn').addEventListener('click', async function() {
-      if (!navigator.canShare) {
-        alert("Your current browser version does not support native file sharing. Please use 'Save Image File' instead!");
-        return;
-      }
-
-      try {
-        const fullCardImageFile = await generateCardFile();
-        
-        if (navigator.canShare({ files: [fullCardImageFile] })) {
-          await navigator.share({
-            files: [fullCardImageFile],
-            title: 'My Custom Love Greeting Card',
-            text: 'I made a custom e-card for you!'
-          });
-        } else {
-          alert("Sharing image files directly is restricted by your device settings.");
-        }
-      } catch (error) {
-        console.log('Action canceled or unavailable:', error);
-      }
-    });
-
-    // Fallback Download Trigger
-    document.getElementById('downloadBtn').addEventListener('click', async function() {
-      const loverName = document.getElementById('partnerNameSpan').innerText || 'GreetingCard';
+    // Standard Download Logic (Captures whatever is visible, including watermark)
+    document.getElementById('downloadBtnPreview').addEventListener('click', async function() {
       const targetCard = document.getElementById('captureTarget');
-      
       html2canvas(targetCard, { useCORS: true, scale: 2, backgroundColor: '#fff5f6' }).then(canvas => {
         const imageUri = canvas.toDataURL("image/png");
         const downloadLink = document.createElement('a');
-        downloadLink.download = `Love_Greeting_Card_${loverName}.png`;
+        downloadLink.download = `Amor_e_Card_Preview.png`;
         downloadLink.href = imageUri;
         document.body.appendChild(downloadLink);
         downloadLink.click();
