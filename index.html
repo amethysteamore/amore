@@ -207,6 +207,72 @@
       color: #857671;
       font-size: 0.85rem;
     }
+    /* Premium Shadows & Soft Gradients */
+    .config-card {
+      border: none !important;
+      background: #ffffff !important;
+      box-shadow: 0 20px 40px rgba(144, 12, 34, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+      border-radius: 24px !important;
+      padding: 40px 35px !important;
+    }
+
+    /* Luxury Interactive Input Form */
+    .config-input {
+      font-size: 1.1rem !important;
+      padding: 14px 20px !important;
+      border-radius: 12px !important;
+      border: 1.5px solid #eee1e3 !important;
+      background-color: #fffbfe !important;
+      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .config-input:focus {
+      background-color: #ffffff !important;
+      border-color: var(--amor-bright-red) !important;
+      box-shadow: 0 0 0 5px rgba(199, 44, 72, 0.08) !important;
+    }
+
+    /* Elegant Interactive Buttons */
+    .btn-generate {
+      background: linear-gradient(135deg, var(--amor-dark-red) 0%, #b01a34 100%) !important;
+      border: none !important;
+      padding: 14px 24px !important;
+      font-size: 1.05rem !important;
+      border-radius: 12px !important;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(144, 12, 34, 0.2) !important;
+      transition: all 0.3s ease !important;
+    }
+    .btn-generate:hover {
+      opacity: 0.95;
+      box-shadow: 0 6px 20px rgba(144, 12, 34, 0.3) !important;
+    }
+
+    /* Smooth Premium Fade-In Effect */
+    .animate-fade-in {
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Step Timeline Styling */
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffe3e7;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .step-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--amor-dark-red);
+    }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
