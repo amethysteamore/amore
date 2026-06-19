@@ -289,10 +289,10 @@
     };
 
     const romanticQuotes = [
-      "నువ్వు నా జీవితంలోకి వచ్చాక నా ప్రపంచం మరింత అందంగా మారింది. (Since you entered my life, my world became more beautiful.)",
-      "నీ ప్రేమ నా హృదయానికి ఎప్పటికీ ఒక మధురమైన కానుక. (Your love is forever a sweet gift to my heart.)",
+      "థాంక్యూ నాన్న.. మా కుటుంబానికి మీరు ఎల్లప్పుడూ ఒక కొండంత అండ. (Thank you Dad.. You are always a mountain of strength for our family.)",
+      "మీ కష్టం, మీ నిఖార్సైన ప్రేమే నన్ను ఈ రోజు ఇలా నిలబెట్టాయి. (Your hard work and honest love have made me who I am today.)",
+      "నా ప్రతి అడుగు వెనుక మీ మార్గదర్శకత్వం, మీ నమ్మకం ఉన్నాయి. (Behind my every step, there is your guidance and your trust.)"
       "నువ్వు నా పక్కన ఉంటే చాలు, ఏ కష్టమైనా సులువుగా అనిపిస్తుంది. (As long as you are by my side, any hardship feels easy.)",
-      "నా ప్రతి శ్వాసలో, నా ప్రతి ఆలోచనలో నువ్వే ఉన్నావు. (You are in my every breath and every thought.)",
       "ఈ జన్మకే కాదు, ఏ జన్మకైనా నీ తోడే నాకు చాలు. (Not just for this life, for lifetimes to come, your companionship is all I need.)"
     ];
 
@@ -329,9 +329,19 @@
       document.getElementById('eCardResult').classList.add('animate-fade-in');
       
       // Update Telugu contextual greeting line inside card text layer wrapper
-      document.querySelector('.card-text-main').innerHTML = `నా ప్రియమైన <span id="partnerNameSpan" class="fw-bold">${loverName}</span> కి, నువ్వు నాకు...`;
-      
-      document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
+      document.querySelector('.card-brand-header').innerText = "నాన్నకు ప్రేమతో";
+    document.querySelector('.card-text-main').innerHTML = `ప్రియమైన నాన్న <span id="partnerNameSpan" class="fw-bold">${loverName}</span> గారికి...`;
+    
+    // 2. Inject the adjectives list
+    document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
+    
+    // 3. CORRECTED: Starts directly with "టువంటి" to seamlessly catch the "aina" endings from above
+    document.getElementById('acrosticMessage').insertAdjacentHTML('beforeend', `
+      <div class="mt-4 fw-bold text-dark font-serif" style="font-size: 1.45rem; border-top: 2px double #ffd0d6; padding-top: 12px; line-height: 1.6;">
+        టువంటి విలక్షణమైన, <br>
+        <span style="color: var(--amor-dark-red);">అపురూపమైన అనుబంధం మీరే నాన్న! 💖</span>
+      </div>
+    `);
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
 
       localStorage.setItem('amore_unlocked_name', loverName);
