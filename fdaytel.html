@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amor-e | Father's Day Premium Greetings</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --amor-dark-red: #900c22;
+      --amor-bright-red: #c72c48;
+      --amor-light-pink: #fff5f6;
+      --amor-bg-pink: #fef8f9;
+      --amor-charcoal: #3a2e2b;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--amor-bg-pink);
+      color: var(--amor-charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #ffe3e7;
+      padding: 12px 0;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--amor-dark-red) !important;
+      font-size: 1.4rem;
+    }
+    .nav-logo {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      margin-right: 8px;
+    }
+    
+    .amor-badge-nav {
+      background-color: #ffe3e7;
+      color: var(--amor-dark-red);
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-section {
+      background: linear-gradient(180deg, #ffffff 0%, var(--amor-bg-pink) 100%);
+      padding: 40px 0 25px 0;
+    }
+
+    /* Premium Form Styling */
+    .config-card {
+      border: none !important;
+      background: #ffffff !important;
+      box-shadow: 0 20px 40px rgba(144, 12, 34, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+      border-radius: 24px !important;
+      padding: 40px 35px !important;
+    }
+    .config-input {
+      font-size: 1.1rem !important;
+      padding: 14px 20px !important;
+      border-radius: 12px !important;
+      border: 1.5px solid #eee1e3 !important;
+      background-color: #fffbfe !important;
+      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .config-input:focus {
+      background-color: #ffffff !important;
+      border-color: var(--amor-bright-red) !important;
+      box-shadow: 0 0 0 5px rgba(199, 44, 72, 0.08) !important;
+    }
+    .btn-generate {
+      background: linear-gradient(135deg, var(--amor-dark-red) 0%, #b01a34 100%) !important;
+      border: none !important;
+      padding: 14px 24px !important;
+      font-size: 1.05rem !important;
+      border-radius: 12px !important;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(144, 12, 34, 0.2) !important;
+    }
+
+    /* THE THEME CANVAS STRUCTURE */
+    .e-card-preview {
+      background-color: var(--amor-light-pink); 
+      border-radius: 20px;
+      border: 1px solid #ffe3e7;
+      padding: 55px 30px;
+      box-shadow: 0 15px 40px rgba(228, 130, 146, 0.12);
+      width: 100%;
+      max-width: 550px;
+      position: relative; 
+      overflow: hidden; 
+      z-index: 1; 
+      display: inline-block; 
+    }
+    .card-brand-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--amor-dark-red);
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+      border-bottom: 1px double #ffd0d6;
+      padding-bottom: 5px;
+    }
+    .card-watermark {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; z-index: 10;
+      display: flex; justify-content: center; align-items: center; pointer-events: none;
+      font-family: 'Dancing Script', cursive; font-size: 4.5rem; font-weight: bold;
+      color: rgba(144, 12, 34, 0.22); transform: rotate(-15deg);
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(144,12,34, 0.07) 100px, rgba(144,12,34,0.07) 103px);
+    }
+    .card-background-pattern {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('father_kid.png'); background-size: 80px 80px; background-repeat: repeat;   
+      opacity: 0.025; z-index: 0; pointer-events: none;
+    }
+
+    /* Core Graphic Elements Alignment Matrix */
+    .corner-graphic { position: absolute; width: 105px; height: 105px; background-size: contain; background-repeat: no-repeat; z-index: -1; opacity: 0.9; }
+    .floral-top-left { top: 0; left: 0; background-image: url('flower.png'); }
+    .floral-top-right { top: 0; right: 0; background-image: url('father_kid2.png'); }
+    .floral-bottom-right { bottom: 12rem; right: 0; background-image: url('flower.png'); transform: rotate(180deg); }
+    .floral-bottom-left { bottom: 12rem; left: 0; background-image: url('father_kid1.png'); }
+
+    @media (min-width: 768px) {
+      .floral-bottom-right { bottom: 8rem; }
+      .floral-bottom-left { bottom: 8rem; }
+    }
+
+    .card-content-wrapper { position: relative; z-index: 2; }
+    .card-text-main { font-size: 1.35rem; line-height: 1.6; margin-bottom: 25px; color: #403430; }
+    .acrostic-container { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--amor-bright-red); line-height: 1.35; margin: 25px 0; }
+    .acrostic-letter { font-size: 3.1rem; font-weight: 700; color: var(--amor-dark-red); }
+    .romantic-quote { font-size: 1.2rem; margin-top: 25px; border-top: 1px solid #ffd0d6; padding-top: 20px; color: #514440; }
+
+    .no-copy { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+    
+    .animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer { background-color: #ffffff; border-top: 1px solid #ffe3e7; color: #857671; font-size: 0.85rem; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand d-flex align-items-center m-0" href="index.html">
+        <img src="heart.png" alt="Amor-e Logo" class="nav-logo">
+        <span>Amor-e</span>
+      </a>
+      <span class="amor-badge-nav">Father's Day Edition</span>
+    </div>
+  </nav>
+
+  <header class="hero-section text-center px-3">
+    <div class="container">
+      <h1 class="display-6 fw-bold text-dark mb-3">Honour Your Pillars of Strength</h1>
+      <p class="text-muted mx-auto" style="max-width: 600px; font-size: 0.95rem;">
+        Celebrate Father's Day with a custom typographic token of gratitude. Map your dad's name to custom traits that mirror his guidance, protection, and unconditional support.
+      </p>
+    </div>
+  </header>
+
+  <main class="container pb-5 px-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 text-center">
+        
+        <div class="card config-card p-4 mb-5 mx-auto" style="max-width: 460px;">
+          <form id="eCardForm">
+            <div class="mb-4">
+              <label for="loverName" class="form-label small fw-medium text-muted mb-2">Enter Your Father's Name</label>
+              <input type="text" class="form-control form-control-lg text-center config-input" id="loverName" placeholder="e.g., Dad or Papa" required>
+            </div>
+            <button type="submit" class="btn btn-danger btn-lg w-100 fw-medium btn-generate">
+              Generate Father's Day Card
+            </button>
+          </form>
+        </div>
+
+        <div id="eCardResult" class="d-none">
+          <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+            <span class="spinner-grow spinner-grow-sm text-danger" role="status"></span>
+            <h4 class="text-secondary h6 mb-0 fw-medium text-uppercase" style="font-size: 0.75rem; letter-spacing: 1px;">Protected Canvas Preview</h4>
+          </div>
+          
+          <div class="d-flex justify-content-center">
+            <div id="captureTarget" class="e-card-preview text-center">
+              
+              <div class="corner-graphic floral-top-left"></div>
+              <div class="corner-graphic floral-top-right"></div>
+              <div class="corner-graphic floral-bottom-right"></div>
+              <div class="corner-graphic floral-bottom-left"></div>
+              <div class="card-background-pattern"></div>
+              
+              <div id="previewWatermark" class="card-watermark">AMOR-E PREVIEW</div>
+              
+              <div class="card-content-wrapper no-copy">
+                <!-- Specialized Card Header Line -->
+                <div class="card-brand-header">HONOURING FATHERHOOD</div>
+                <div class="card-text-main">
+                  To <span id="partnerNameSpan" class="fw-bold"></span>, a wonderful father. You are truly
+                </div>
+                <div id="acrosticMessage" class="acrostic-container"></div>
+                <div id="romanticQuote" class="romantic-quote"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="unlockBlock" class="mt-4 border-top pt-4 mx-auto" style="max-width: 550px;">
+            <p class="small text-secondary mb-3">Unlock this premium watermark-free high-definition layout to share with your dad.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3 align-items-center">
+              <!-- DROP YOUR DEDICATED RAZORPAY PAYMENT BUTTON SNIPPET HERE -->
+              <form>
+                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_T38D95Vd8x0cC1" async></script> 
+              </form>
+              <button id="downloadBtnPreview" class="btn btn-outline-secondary btn-lg px-4 fw-medium" style="font-size: 1rem;">
+                💾 Download Preview
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center mt-5 px-3">
+    <div class="container">
+      <p class="mb-1">&copy; 2026 Amor-e Greeting Cards Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Premium Telugu descriptive words/phrases mapped to English alphabet characters
+    const acrosticData = {
+      'A': ['అపురూపమైన (Rare/Precious)', 'అంతులేని ప్రేమ (Endless Love)', 'అందమైన (Beautiful)'],
+      'B': ['బంగారం (Pure Gold/Sweetheart)', 'బంధం (Deep Bond)', 'బలమైన నమ్మకం (Strong Trust)'],
+      'C': ['చిరునవ్వుల రాణి/రాజు (King/Queen of Smiles)', 'చక్కనైన (Charming)', 'చిలిపి (Playful)'],
+      'D': ['ధైర్యం (My Courage)', 'దేవత లాంటి (Angelic/Divine)', 'దగ్గరైన ప్రాణం (Close to Life)'],
+      'E': ['ఎనలేని ఆనందం (Boundless Joy)', 'ఎప్పటికీ నీవు (Forever Yours)', 'ఎదలో నిలిచే (Living in my Heart)'],
+      'F': ['ఫలించిన ప్రేమ (Fulfilled Love)', 'ఫుల్ జోష్ (Full of Life)'],
+      'G': ['గుండె చప్పుడు (My Heartbeat)', 'గౌరవప్రదమైన (Honorable)', 'గెలుపు (My Victory)'],
+      'H': ['హృదయపూర్వక (Wholehearted)', 'హాయినిచ్చే తోడు (Comforting Companion)'],
+      'I': ['ఇష్టమైన స్నేహం (Favorite Friendship)', 'ఇంద్రధనస్సు లాంటి (Rainbow-like/Vibrant)'],
+      'J': ['జీవిత భాగస్వామి (Life Partner)', 'జతగా (Together Always)', 'జగమంత ప్రేమ (Universe-sized Love)'],
+      'K': ['కంటిపాప (Apple of my Eye)', 'కరుణామయుడు/రాలు (Compassionate One)', 'కలకాలం ఉండే (Everlasting)'],
+      'L': ['లక్ష్మణ రేఖ లాంటి నమ్మకం (Unshakable Trust)', 'లాలన (Tender Care)'],
+      'M': ['మనసైనవాడు/రు (Soulmate)', 'మధురమైన భావన (Sweetest Feeling)', 'ముద్దుల (Darling)'],
+      'N': ['నమ్మకమైన (Trustworthy)', 'నిజమైన ప్రేమ (True Love)', 'నిరంతరం తలచే (Always Remembered)'],
+      'O': ['ఓర్పుగల (Patient)', 'ఒక్కటే ప్రాణం (One Soul)'],
+      'P': ['ప్రాణ స్నేహితుడు/రాలు (Soul Friend)', 'ప్రియమైన (Dearest)', 'పరిపూర్ణమైన (Perfect)'],
+      'Q': ['క్వీన్ లాంటి (Queen-like)'],
+      'R': ['రూపవతి/రూపవంతుడు (Gorgeous)', 'రాకుమారుడు/రి (Prince/Princess)'],
+      'S': ['స్వచ్ఛమైన (Pure)', 'సంతోషం (My Happiness)', 'స్నేహపూర్వక (Friendly)'],
+      'T': ['తీపి జ్ఞాపకం (Sweet Memory)', 'తోడుగా నిలిచే (Standing by me)'],
+      'U': ['ఉత్సాహభరితమైన (Enthusiastic)', 'ఊపిరి (My Breath)'],
+      'V': ['వెలకట్టలేని (Priceless)', 'విలువైన (Valuable)'],
+      'W': ['వండర్ఫుల్ (Wonderful)'],
+      'X': ['ఎక్స్‌ట్రార్డినరీ (Extraordinary)'],
+      'Y': ['యువరాజు/రాణి (Young Prince/Queen)', 'యోగ్యమైన (Worthy One)'],
+      'Z': ['జోరుగల (Lively)']
+    };
+
+    const romanticQuotes = [
+      "నువ్వు నా జీవితంలోకి వచ్చాక నా ప్రపంచం మరింత అందంగా మారింది. (Since you entered my life, my world became more beautiful.)",
+      "నీ ప్రేమ నా హృదయానికి ఎప్పటికీ ఒక మధురమైన కానుక. (Your love is forever a sweet gift to my heart.)",
+      "నువ్వు నా పక్కన ఉంటే చాలు, ఏ కష్టమైనా సులువుగా అనిపిస్తుంది. (As long as you are by my side, any hardship feels easy.)",
+      "నా ప్రతి శ్వాసలో, నా ప్రతి ఆలోచనలో నువ్వే ఉన్నావు. (You are in my every breath and every thought.)",
+      "ఈ జన్మకే కాదు, ఏ జన్మకైనా నీ తోడే నాకు చాలు. (Not just for this life, for lifetimes to come, your companionship is all I need.)"
+    ];
+
+    document.getElementById('eCardForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const loverNameRaw = document.getElementById('loverName').value.trim();
+      const loverName = loverNameRaw.charAt(0).toUpperCase() + loverNameRaw.slice(1).toLowerCase();
+
+      if (!loverName) return;
+
+      let acrosticHtml = '';
+      const upperName = loverName.toUpperCase();
+      const letterCounter = {};
+
+      for (let i = 0; i < upperName.length; i++) {
+        const letter = upperName[i];
+        if (acrosticData[letter]) {
+          if (letterCounter[letter] === undefined) {
+            letterCounter[letter] = 0;
+          }
+          const wordOptions = acrosticData[letter];
+          const chosenIndex = letterCounter[letter] % wordOptions.length;
+          
+          // Render the Telugu phrase beautifully keeping the English target token highlighted
+          acrosticHtml += `<div><span class="acrostic-letter">${letter}</span> - ${wordOptions[chosenIndex]}</div>`;
+          letterCounter[letter]++;
+        }
+      }
+
+      const randomQuote = romanticQuotes[Math.floor(Math.random() * romanticQuotes.length)];
+
+      document.getElementById('eCardResult').classList.remove('d-none');
+      document.getElementById('eCardResult').classList.add('animate-fade-in');
+      
+      // Update Telugu contextual greeting line inside card text layer wrapper
+      document.querySelector('.card-text-main').innerHTML = `నా ప్రియమైన <span id="partnerNameSpan" class="fw-bold">${loverName}</span> కి, నువ్వు నాకు...`;
+      
+      document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
+      document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
+
+      localStorage.setItem('amore_unlocked_name', loverName);
+      document.getElementById('previewWatermark').classList.remove('d-none');
+      document.getElementById('eCardResult').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('downloadBtnPreview').addEventListener('click', function() {
+      const targetCard = document.getElementById('captureTarget');
+      html2canvas(targetCard, { useCORS: true, scale: 2, backgroundColor: '#fff5f6' }).then(canvas => {
+        const imageUri = canvas.toDataURL("image/png");
+        const downloadLink = document.createElement('a');
+        downloadLink.download = `Amor_e_Telugu_Card_Preview.png`;
+        downloadLink.href = imageUri;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      });
+    });
+</script>
+</body>
+</html>
