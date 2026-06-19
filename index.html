@@ -47,7 +47,7 @@
       display: inline-block; 
     }
 
-    /* 1. Watermark Overlay Logic (Shown by default) */
+    /* 1. Enhanced Watermark Overlay Logic (More visible and obvious) */
     .card-watermark {
       position: absolute;
       top: 0;
@@ -58,16 +58,24 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      pointer-events: none; /* Text can be clicked/selected beneath */
-      /* Semi-transparent text watermark */
-      font-family: 'Dancing Script', cursive;
-      font-size: 5rem;
-      color: rgba(144, 12, 34, 0.1); /* Extremely subtle red */
-      transform: rotate(-15deg);
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      pointer-events: none; /* Allows canvas interactions underneath */
       
-      /* Diagonal scattered text pattern approach */
-      background-image: repeating-linear-gradient(45deg, transparent, transparent 120px, rgba(144,12,34, 0.04) 120px, rgba(144,12,34,0.04) 122px);
+      font-family: 'Dancing Script', cursive;
+      font-size: 5.5rem;
+      font-weight: bold;
+      color: rgba(144, 12, 34, 0.25); /* Increased opacity from 0.1 to 0.25 for higher visibility */
+      transform: rotate(-15deg);
+      
+      /* Denser diagonal cross-hatch pattern across the entire card space */
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(144,12,34, 0.08) 100px, rgba(144,12,34,0.08) 103px);
+    }
+    
+    /* 2. Anti-Copy Text Protection */
+    .no-copy {
+      -webkit-user-select: none;  /* Safari */
+      -moz-user-select: none;     /* Firefox */
+      -ms-user-select: none;      /* IE10+/Edge */
+      user-select: none;          /* Standard browsers */
     }
     
     /* Background Pattern */
@@ -164,7 +172,7 @@
               
               <div id="previewWatermark" class="card-watermark">PREVIEW | PREVIEW</div>
               
-              <div class="card-content-wrapper">
+              <div class="card-content-wrapper no-copy">
                 <div class="card-text-main">
                   To my wonderful <span id="partnerNameSpan" class="fw-bold"></span>. You are truly
                 </div>
