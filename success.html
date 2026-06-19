@@ -103,11 +103,32 @@
 
   <script>
     const acrosticData = {
-      'A': 'Adorable', 'B': 'Brilliant', 'C': 'Charming', 'D': 'Darling', 'E': 'Enchanting',
-      'F': 'Fantastic', 'G': 'Gorgeous', 'H': 'Heavenly', 'I': 'Incredible', 'J': 'Joyful',
-      'K': 'Kindhearted', 'L': 'Lovely', 'M': 'Magnetic', 'N': 'Nice', 'O': 'Outstanding',
-      'P': 'Perfect', 'Q': 'Queen', 'R': 'Radiant', 'S': 'Special', 'T': 'Trustworthy',
-      'U': 'Unique', 'V': 'Vibrant', 'W': 'Wonderful', 'X': 'Xtraordinary', 'Y': 'Youthful', 'Z': 'Zealous'
+      'A': ['Adorable', 'Amazing', 'Angelic'],
+      'B': ['Brilliant', 'Beautiful', 'Breathtaking'],
+      'C': ['Charming', 'Captivating', 'Compassionate'],
+      'D': ['Darling', 'Divine', 'Delightful'],
+      'E': ['Enchanting', 'Elegant', 'Exceptional'],
+      'F': ['Fantastic', 'Fascinating', 'Forever-yours'],
+      'G': ['Gorgeous', 'Genuine', 'Graceful'],
+      'H': ['Heavenly', 'Heartwarming', 'Honest'],
+      'I': ['Incredible', 'Inspiring', 'Irresistible'],
+      'J': ['Joyful', 'Joyous', 'Jewel'],
+      'K': ['Kindhearted', 'Kind', 'Kisses-personified'],
+      'L': ['Lovely', 'Luminous', 'Loyal'],
+      'M': ['Magnetic', 'Magnificent', 'Mesmerizing'],
+      'N': ['Nice', 'Noble', 'Nurturing'],
+      'O': ['Outstanding', 'One-of-a-kind', 'Optimistic'],
+      'P': ['Perfect', 'Precious', 'Passionate'],
+      'Q': ['Queen', 'Quick-witted', 'Quietly-stunning'],
+      'R': ['Radiant', 'Rare', 'Remarkable'],
+      'S': ['Special', 'Sweet', 'Soulmate'],
+      'T': ['Trustworthy', 'Tender', 'Treasured'],
+      'U': ['Unique', 'Unbelievable', 'Unconditional'],
+      'V': ['Vibrant', 'Valuable', 'Vivacious'],
+      'W': ['Wonderful', 'Warmhearted', 'Witty'],
+      'X': ['Xtraordinary', 'Xceptional', 'Xanthic'],
+      'Y': ['Youthful', 'Yearned-for', 'Yielding'],
+      'Z': ['Zealous', 'Zesty', 'Zillion-stars']
     };
 
     const romanticQuotes = [
@@ -118,17 +139,26 @@
       "Being in your arms is my absolute favorite place to be. You are my everything."
     ];
 
-    // MODIFIED HERE: Pull the name from the local storage caching state set by index.html
     let loverName = localStorage.getItem('amore_unlocked_name') || "My Love";
     loverName = loverName.charAt(0).toUpperCase() + loverName.slice(1).toLowerCase();
 
-    // Rebuild layout text fields
+    // Rebuild layout with the smart iteration tracking loop
     let acrosticHtml = '';
     const upperName = loverName.toUpperCase();
+    const letterCounter = {};
+
     for (let i = 0; i < upperName.length; i++) {
       const letter = upperName[i];
       if (acrosticData[letter]) {
-        acrosticHtml += `<div><span class="acrostic-letter">${letter}</span>${acrosticData[letter].slice(1).toLowerCase()}</div>`;
+        if (letterCounter[letter] === undefined) {
+          letterCounter[letter] = 0;
+        }
+        
+        const wordOptions = acrosticData[letter];
+        const chosenIndex = letterCounter[letter] % wordOptions.length;
+        acrosticHtml += `<div><span class="acrostic-letter">${letter}</span>${wordOptions[chosenIndex].slice(1).toLowerCase()}</div>`;
+        
+        letterCounter[letter]++;
       }
     }
     const randomQuote = romanticQuotes[Math.floor(Math.random() * romanticQuotes.length)];
@@ -137,7 +167,6 @@
     document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
     document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
 
-    // Canvas File Builder 
     async function generateCardFile() {
       const targetCard = document.getElementById('captureTarget');
       const canvas = await html2canvas(targetCard, { useCORS: true, scale: 2, backgroundColor: '#fff5f6' });
@@ -148,7 +177,6 @@
       });
     }
 
-    // Fully unlocked Share Action
     document.getElementById('shareBtn').addEventListener('click', async function() {
       if (!navigator.share) {
         alert("Sharing isn't fully supported on this browser. Use 'Save HD Image File' button!");
@@ -162,7 +190,6 @@
       } catch (err) { console.log(err); }
     });
 
-    // Unlocked Download Action
     document.getElementById('downloadBtn').addEventListener('click', function() {
       html2canvas(document.getElementById('captureTarget'), { useCORS: true, scale: 2, backgroundColor: '#fff5f6' }).then(canvas => {
         const link = document.createElement('a');
@@ -170,7 +197,6 @@
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
-    });
-  </script>
+    });  </script>
 </body>
 </html>
