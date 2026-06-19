@@ -465,6 +465,7 @@
       const randomQuote = romanticQuotes[Math.floor(Math.random() * romanticQuotes.length)];
 
       document.getElementById('eCardResult').classList.remove('d-none');
+      document.getElementById('eCardResult').classList.add('animate-fade-in');
       document.getElementById('partnerNameSpan').innerText = loverName;
       document.getElementById('acrosticMessage').innerHTML = acrosticHtml;
       document.getElementById('romanticQuote').innerHTML = `<i>"${randomQuote}"</i>`;
